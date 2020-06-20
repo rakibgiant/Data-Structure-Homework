@@ -1,67 +1,30 @@
-#include<stdio.h>
-#include<conio.h>
-typedef struct node
-{
-  int data;
-  struct node *left;
-  struct node *right;
-} node;
+#include <stdio.h>
+#include <stdlib.h>
 
-node *create()
+int main()
 {
-    node *p;
-    char x;
-    printf("Please Enter a chracter (-1 for no node):");
-    scanf("%c",&x);
+   int a[1000];
 
-    if(x==-1)
-	return NULL;
+       int i, x, pos;
 
-    p=(node*)malloc(sizeof(node));
-    p->data=x;
-    printf("Please Enter left child of %c:\n",x);
-    p->left=create();
-    printf("Please Enter right child of %c:\n",x);
-    p->right=create();
-    return p;
-}
-void preorder(node *t)
-{
-  if(t!=NULL)
-  {
-    printf("  %d",t->data);
-    preorder(t->left);
-    preorder(t->right);
-  }
-}
-void inorder(node *t)
-{
-  if(t!=NULL)
-  {
-    inorder(t->left);
-    printf("  %d",t->data);
-    inorder(t->right);
-  }
-}
-void postorder(node *t)
-{
-  if(t!=NULL)
-  {
-    postorder(t->left);
-    postorder(t->right);
-    printf("  %d",t->data);
-  }
-}
-void main()
-{
-  node *root;
-  root=create();
-  printf("\nThe pre-order traversal of tree is: ");
-  preorder(root);
-  printf("\nThe in-order traversal of tree is: ");
-  inorder(root);
-  printf("\nThe post-order traversal of tree is: ");
-  postorder(root);
-  getch();
-}
+    int* pa = a;
 
+    for(i = 0; i <= 1000; i++)
+    {
+        if(i==500){
+            continue;
+        }
+        printf("a[%d] \n",i);
+        pa++;
+    x = 500; // element to be inserted
+    pos = 500;     // position at which element is to be inserted
+    for (i = 1000; i >= pos; i--)    // shift elements forward
+        a[i] = a[i - 1];
+    a[pos - 1] = x;     // insert x at pos
+    for (i = 0; i <= 1000; i++)     // print the updated array
+        printf("%d ", a[i]);
+    printf("\n");
+
+    return 0;
+    }
+}
