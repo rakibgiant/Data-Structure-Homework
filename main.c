@@ -1,30 +1,45 @@
 #include <stdio.h>
 #include <stdlib.h>
+typedef struct node Node;
+struct node {
+    int data;
+    Node* next;
+};
+Node *head;
+//head = 0;
+Node *create_node(int item,Node *next)
+{
+    for(int item=0;item<500;item++){
+    Node *new_node = (Node *)malloc(sizeof(Node));
+    if (new_node == NULL){  //if there are any error new_node will assign NULL
+        printf("Error! Could Not Create A New Node\n");
+        exit(1);
+    }else{
+            new_node->data = item;
+    new_node->next = next;
+        printf("data = %d\n",new_node->data);
+         }
+
+    }
+    for(int item=501;item<1000;item++){
+    Node *new_node = (Node *)malloc(sizeof(Node));
+    if (new_node == NULL){  //if there are any error new_node will assign NULL
+        printf("Error! Could Not Create A New Node\n");
+        exit(1);
+    }else{
+            new_node->data = item;
+    new_node->next = next;
+        printf("data = %d\n",new_node->data);
+         }
+
+    }
+
+    return 0;
+}
 
 int main()
 {
-   int a[1000];
-
-       int i, x, pos;
-
-    int* pa = a;
-
-    for(i = 0; i <= 1000; i++)
-    {
-        if(i==500){
-            continue;
-        }
-        printf("a[%d] \n",i);
-        pa++;
-    x = 500; // element to be inserted
-    pos = 500;     // position at which element is to be inserted
-    for (i = 1000; i >= pos; i--)    // shift elements forward
-        a[i] = a[i - 1];
-    a[pos - 1] = x;     // insert x at pos
-    for (i = 0; i <= 1000; i++)     // print the updated array
-        printf("%d ", a[i]);
-    printf("\n");
+create_node(0,1);
 
     return 0;
-    }
 }
