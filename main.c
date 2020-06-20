@@ -1,31 +1,67 @@
 #include<stdio.h>
-  void main()
+#include<conio.h>
+typedef struct node
+{
+  int data;
+  struct node *left;
+  struct node *right;
+} node;
+
+node *create()
+{
+    node *p;
+    char x;
+    printf("Please Enter a chracter (-1 for no node):");
+    scanf("%c",&x);
+
+    if(x==-1)
+	return NULL;
+
+    p=(node*)malloc(sizeof(node));
+    p->data=x;
+    printf("Please Enter left child of %c:\n",x);
+    p->left=create();
+    printf("Please Enter right child of %c:\n",x);
+    p->right=create();
+    return p;
+}
+void preorder(node *t)
+{
+  if(t!=NULL)
   {
-  int  arra[100],i,n,x,f,l,m,flag=0;
-  printf("Input no. of elements in an array\n");
-  scanf("%d",&n);
-  printf("Input  %d value in ascending order\n",n);
-  for(i=0;i<n;i++)
-  scanf("%d",&arra[i]);
-  printf("Input  the value to be search : ");
-  scanf("%d",&x);
-  /* Binary Search  logic */
-  f=0;l=n-1;
-  while(f<=l)
+    printf("  %d",t->data);
+    preorder(t->left);
+    preorder(t->right);
+  }
+}
+void inorder(node *t)
+{
+  if(t!=NULL)
   {
-  m=(f+l)/2;
-  if(x==arra[m])
+    inorder(t->left);
+    printf("  %d",t->data);
+    inorder(t->right);
+  }
+}
+void postorder(node *t)
+{
+  if(t!=NULL)
   {
-  flag=1;
-  break;
+    postorder(t->left);
+    postorder(t->right);
+    printf("  %d",t->data);
   }
-  else  if(x<arra[m])
-  l=m-1;
-  else
-  f=m+1;
-  }
-  if(flag==0)
-  printf("%d  value not found\n",x);
-  else
-  printf("%d value  found at %d position\n",x,m+1);
-  }
+}
+void main()
+{
+  node *root;
+  root=create();
+  printf("\nThe pre-order traversal of tree is: ");
+  preorder(root);
+  printf("\nThe in-order traversal of tree is: ");
+  inorder(root);
+  printf("\nThe post-order traversal of tree is: ");
+  postorder(root);
+  getch();
+}
+
